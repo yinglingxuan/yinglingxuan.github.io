@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>threejs调用3D模型 | Sakura</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="https://pan.zealsay.com/blog/favicon.ico">
+    <script>
+          var _hmt = _hmt || [];
+          (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?b0aae218897fa9d8a9f76e9a77e0b3c6";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+          })();
+        </script>
+    <meta name="description" content="Sakura,前端开发工程师。">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <link rel="preload" href="/assets/css/0.styles.5352bbc7.css" as="style"><link rel="preload" href="/assets/js/app.c27a4aec.js" as="script"><link rel="preload" href="/assets/js/3.8e6f7e3e.js" as="script"><link rel="preload" href="/assets/js/2.ef225559.js" as="script"><link rel="preload" href="/assets/js/1.967b5cf0.js" as="script"><link rel="preload" href="/assets/js/56.9f15d331.js" as="script"><link rel="prefetch" href="/assets/js/10.f58f0cd5.js"><link rel="prefetch" href="/assets/js/11.e61d164f.js"><link rel="prefetch" href="/assets/js/12.d9256b3b.js"><link rel="prefetch" href="/assets/js/13.91c164c8.js"><link rel="prefetch" href="/assets/js/14.52680978.js"><link rel="prefetch" href="/assets/js/15.ed7e43d0.js"><link rel="prefetch" href="/assets/js/16.4eea3823.js"><link rel="prefetch" href="/assets/js/19.b8ed4046.js"><link rel="prefetch" href="/assets/js/20.7ec67b9f.js"><link rel="prefetch" href="/assets/js/21.7b7dd01c.js"><link rel="prefetch" href="/assets/js/22.31fcf64a.js"><link rel="prefetch" href="/assets/js/23.1000fb70.js"><link rel="prefetch" href="/assets/js/24.aad8e8dd.js"><link rel="prefetch" href="/assets/js/25.4eff673a.js"><link rel="prefetch" href="/assets/js/26.c82b8406.js"><link rel="prefetch" href="/assets/js/27.4c9b1548.js"><link rel="prefetch" href="/assets/js/28.3aba1eb9.js"><link rel="prefetch" href="/assets/js/29.97a2b71d.js"><link rel="prefetch" href="/assets/js/30.2dc701d7.js"><link rel="prefetch" href="/assets/js/31.281966dd.js"><link rel="prefetch" href="/assets/js/32.22b074fb.js"><link rel="prefetch" href="/assets/js/33.4fa8d66c.js"><link rel="prefetch" href="/assets/js/34.50ecc91f.js"><link rel="prefetch" href="/assets/js/35.b30d2bc3.js"><link rel="prefetch" href="/assets/js/36.6d2b394d.js"><link rel="prefetch" href="/assets/js/37.a94bc007.js"><link rel="prefetch" href="/assets/js/38.77ff61bf.js"><link rel="prefetch" href="/assets/js/39.7c562079.js"><link rel="prefetch" href="/assets/js/4.4acf97fe.js"><link rel="prefetch" href="/assets/js/40.cb018bf1.js"><link rel="prefetch" href="/assets/js/41.c525f270.js"><link rel="prefetch" href="/assets/js/42.f3274927.js"><link rel="prefetch" href="/assets/js/43.1f22bcfb.js"><link rel="prefetch" href="/assets/js/44.2a995ebb.js"><link rel="prefetch" href="/assets/js/45.12bc49c8.js"><link rel="prefetch" href="/assets/js/46.eb75dd37.js"><link rel="prefetch" href="/assets/js/47.21820433.js"><link rel="prefetch" href="/assets/js/48.9b9abf3e.js"><link rel="prefetch" href="/assets/js/49.b87fd103.js"><link rel="prefetch" href="/assets/js/5.11c1201a.js"><link rel="prefetch" href="/assets/js/50.e1e3f7ab.js"><link rel="prefetch" href="/assets/js/51.6831e583.js"><link rel="prefetch" href="/assets/js/52.a26827ab.js"><link rel="prefetch" href="/assets/js/53.58a9bd0f.js"><link rel="prefetch" href="/assets/js/54.a9823188.js"><link rel="prefetch" href="/assets/js/55.6477d717.js"><link rel="prefetch" href="/assets/js/57.fddfb5fa.js"><link rel="prefetch" href="/assets/js/58.107f224c.js"><link rel="prefetch" href="/assets/js/59.0e5a101f.js"><link rel="prefetch" href="/assets/js/6.d371c718.js"><link rel="prefetch" href="/assets/js/60.19dfb6dd.js"><link rel="prefetch" href="/assets/js/61.7a1bea71.js"><link rel="prefetch" href="/assets/js/62.3af2754a.js"><link rel="prefetch" href="/assets/js/63.1ef27f3a.js"><link rel="prefetch" href="/assets/js/64.e5689e2f.js"><link rel="prefetch" href="/assets/js/65.daa8295f.js"><link rel="prefetch" href="/assets/js/66.e317e7bd.js"><link rel="prefetch" href="/assets/js/67.98d252ff.js"><link rel="prefetch" href="/assets/js/7.cc3ba4be.js"><link rel="prefetch" href="/assets/js/8.2d903560.js"><link rel="prefetch" href="/assets/js/9.50934b51.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.8191c023.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.5352bbc7.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar" data-v-6aa67c49><div data-v-6aa67c49><div id="loader-wrapper" class="loading-wrapper" data-v-d48f4d20 data-v-6aa67c49 data-v-6aa67c49><div class="loader-main" data-v-d48f4d20><div data-v-d48f4d20></div><div data-v-d48f4d20></div><div data-v-d48f4d20></div><div data-v-d48f4d20></div></div> <!----> <!----></div> <div class="password-shadow password-wrapper-out" style="display:none;" data-v-5cb9a64e data-v-6aa67c49 data-v-6aa67c49><h3 class="title" style="display:none;" data-v-5cb9a64e data-v-5cb9a64e>Sakura</h3> <!----> <label id="box" class="inputBox" style="display:none;" data-v-5cb9a64e data-v-5cb9a64e><input type="password" value="" data-v-5cb9a64e> <span data-v-5cb9a64e>Konck! Knock!</span> <button data-v-5cb9a64e>OK</button></label> <div class="footer" style="display:none;" data-v-5cb9a64e data-v-5cb9a64e><span data-v-5cb9a64e><i class="iconfont reco-theme" data-v-5cb9a64e></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-5cb9a64e>vuePress-theme-reco</a></span> <span data-v-5cb9a64e><i class="iconfont reco-copyright" data-v-5cb9a64e></i> <a data-v-5cb9a64e><span data-v-5cb9a64e>Sakura</span>
+            
+          <span data-v-5cb9a64e>2019 - 2022 - </span>
+          2025
+        </a></span></div></div> <div class="hide" data-v-6aa67c49><div data-v-6aa67c49><div id="smart" class="wrapper-page" style="background-image:url(https://cnd.yinglingxuan.cn/myPng/3ddemo_0508.jpg);background-position-x:center;background-position-y:center;background-size:cover;background-repeat-x:no-repeat;background-repeat-y:no-repeat;" data-v-6aa67c49><header class="navbar" data-v-6aa67c49><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/logo.png" alt="Sakura" class="logo"> <span class="site-name">Sakura</span></a> <div class="links"><div id="dayNightSwitch" class="generalWrapper" data-v-32f44868><a class="click" data-v-32f44868><div class="onOff daySwitch" data-v-32f44868><div class="star star1" data-v-32f44868></div> <div class="star star2" data-v-32f44868></div> <div class="star star3" data-v-32f44868></div> <div class="star star4" data-v-32f44868></div> <div class="star star5" data-v-32f44868></div> <div class="star sky" data-v-32f44868></div> <div class="sunMoon" data-v-32f44868><div class="crater crater1" data-v-32f44868></div> <div class="crater crater2" data-v-32f44868></div> <div class="crater crater3" data-v-32f44868></div> <div class="cloud part1" data-v-32f44868></div> <div class="cloud part2" data-v-32f44868></div></div></div></a></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont reco-home"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      博客
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/java笔记/" class="nav-link"><i class="iconfont undefined"></i>
+  java笔记
+</a></li><li class="dropdown-item"><!----> <a href="/categories/前端笔记/" class="nav-link"><i class="iconfont undefined"></i>
+  前端笔记
+</a></li><li class="dropdown-item"><!----> <a href="/categories/心情物语/" class="nav-link"><i class="iconfont undefined"></i>
+  心情物语
+</a></li><li class="dropdown-item"><!----> <a href="/categories/生活/" class="nav-link"><i class="iconfont undefined"></i>
+  生活
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><a href="/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间轴
+</a></div><div class="nav-item"><a href="/about/" class="nav-link"><i class="iconfont reco-account"></i>
+  关于
+</a></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-6aa67c49></div> <aside class="sidebar" data-v-6aa67c49><div class="personal-info-wrapper" data-v-03833281 data-v-6aa67c49><img src="http://cnd.yinglingxuan.cn/touxiang.jpg" alt="author-avatar" class="personal-img" data-v-03833281> <h3 class="name" data-v-03833281>
+    Sakura
+  </h3> <div class="num" data-v-03833281><div data-v-03833281><h3 data-v-03833281>17</h3> <h6 data-v-03833281>文章</h6></div> <div data-v-03833281><h3 data-v-03833281>44</h3> <h6 data-v-03833281>标签</h6></div></div> <hr data-v-03833281></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont reco-home"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      博客
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/java笔记/" class="nav-link"><i class="iconfont undefined"></i>
+  java笔记
+</a></li><li class="dropdown-item"><!----> <a href="/categories/前端笔记/" class="nav-link"><i class="iconfont undefined"></i>
+  前端笔记
+</a></li><li class="dropdown-item"><!----> <a href="/categories/心情物语/" class="nav-link"><i class="iconfont undefined"></i>
+  心情物语
+</a></li><li class="dropdown-item"><!----> <a href="/categories/生活/" class="nav-link"><i class="iconfont undefined"></i>
+  生活
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><a href="/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间轴
+</a></div><div class="nav-item"><a href="/about/" class="nav-link"><i class="iconfont reco-account"></i>
+  关于
+</a></div> <!----></nav> <!----> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-5cb9a64e data-v-6aa67c49><h3 class="title" style="display:none;" data-v-5cb9a64e data-v-5cb9a64e>threejs调用3D模型</h3> <!----> <label id="box" class="inputBox" style="display:none;" data-v-5cb9a64e data-v-5cb9a64e><input type="password" value="" data-v-5cb9a64e> <span data-v-5cb9a64e>Konck! Knock!</span> <button data-v-5cb9a64e>OK</button></label> <div class="footer" style="display:none;" data-v-5cb9a64e data-v-5cb9a64e><span data-v-5cb9a64e><i class="iconfont reco-theme" data-v-5cb9a64e></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-5cb9a64e>vuePress-theme-reco</a></span> <span data-v-5cb9a64e><i class="iconfont reco-copyright" data-v-5cb9a64e></i> <a data-v-5cb9a64e><span data-v-5cb9a64e>Sakura</span>
+            
+          <span data-v-5cb9a64e>2019 - 2022 - </span>
+          2025
+        </a></span></div></div></div> <div data-v-6aa67c49><main class="page" style="padding-right:0;"><div class="page-title" style="display:none;"><h1 class="title">threejs调用3D模型</h1> <div class="page-info" data-v-0efa1f05><i class="iconfont reco-account" data-v-0efa1f05><span data-v-0efa1f05>Sakura</span></i> <i class="iconfont reco-date" data-v-0efa1f05><span data-v-0efa1f05>2025-05-08</span></i> <i class="iconfont reco-eye" data-v-0efa1f05><span id="/blogs/docs/vue/threejsdiao-yong-3dmo-xing.html" data-flag-title="Your Article Title" class="leancloud-visitors" data-v-0efa1f05><a class="leancloud-visitors-count" style="font-size:.9rem;font-weight:normal;color:#999;"></a></span></i> <i class="iconfont reco-tag tags" data-v-0efa1f05><span class="tag-item" data-v-0efa1f05>JavaScript</span><span class="tag-item" data-v-0efa1f05>css</span><span class="tag-item" data-v-0efa1f05>函数</span><span class="tag-item" data-v-0efa1f05>ThreeJS</span><span class="tag-item" data-v-0efa1f05>3D</span></i></div></div> <div class="theme-reco-content content__default" style="display:none;"><hr> <div class="custom-block tip"><p class="custom-block-title">介绍<br></p> <p>是用threejs调用模型， 主要功能有兼容pc和移动端的监听鼠标移动和触摸屏幕 呈现的3D 旋转效果， 和放大放小功能， 自转功能， 和调用模型动画效果</p></div> <p><a href="https://cnd.yinglingxuan.cn/3d_three_demo/3ddemo.html?url=https://cnd.yinglingxuan.cn/3d_three_demo/gui/source/Tortoise.gltf?time=5" target="_blank" rel="noopener noreferrer">点击跳转查看demo<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="使用场景"><a href="#使用场景" class="header-anchor">#</a> 🎏 使用场景</h2> <p>这里使用的是本地的js资源库，  可以自行下载，或者使用远程的cdn</p> <div class="language-js extra-class"><pre class="language-js"><code> <span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">&quot;https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js&quot;</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">&quot;https://cdn.jsdelivr.net/npm/three@0.128.0/examples/jsm/loaders/GLTFLoader.js&quot;</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">&quot;https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js&quot;</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+</code></pre></div><p>全代码， 通过url 传入对应的 模型路径， 自定义模型</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token constant">DOCTYPE</span> html<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>html lang<span class="token operator">=</span><span class="token string">&quot;zh-CN&quot;</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>head<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>meta charset<span class="token operator">=</span><span class="token string">&quot;UTF-8&quot;</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>meta
+      name<span class="token operator">=</span><span class="token string">&quot;viewport&quot;</span>
+      content<span class="token operator">=</span><span class="token string">&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>title<span class="token operator">&gt;</span>3D模型交互<span class="token operator">&lt;</span><span class="token operator">/</span>title<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>style<span class="token operator">&gt;</span>
+      @media screen <span class="token function">and</span> <span class="token punctuation">(</span><span class="token parameter">min<span class="token operator">-</span>width<span class="token operator">:</span> 1000px</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        body <span class="token punctuation">{</span>
+          <span class="token literal-property property">margin</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+          <span class="token comment">/* margin-top: 50px; */</span>
+          <span class="token literal-property property">overflow</span><span class="token operator">:</span> hidden<span class="token punctuation">;</span>
+          touch<span class="token operator">-</span>action<span class="token operator">:</span> none<span class="token punctuation">;</span>
+          font<span class="token operator">-</span>family<span class="token operator">:</span> Arial<span class="token punctuation">,</span> sans<span class="token operator">-</span>serif<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        canvas <span class="token punctuation">{</span>
+          <span class="token literal-property property">display</span><span class="token operator">:</span> block<span class="token punctuation">;</span>
+          <span class="token literal-property property">width</span><span class="token operator">:</span> 100vw<span class="token punctuation">;</span>
+          <span class="token literal-property property">height</span><span class="token operator">:</span> 100vh<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token punctuation">.</span>controls <span class="token punctuation">{</span>
+          <span class="token literal-property property">position</span><span class="token operator">:</span> fixed<span class="token punctuation">;</span>
+          <span class="token literal-property property">bottom</span><span class="token operator">:</span> <span class="token number">10</span><span class="token operator">%</span><span class="token punctuation">;</span>
+          <span class="token literal-property property">left</span><span class="token operator">:</span> <span class="token number">50</span><span class="token operator">%</span><span class="token punctuation">;</span>
+          <span class="token literal-property property">transform</span><span class="token operator">:</span> <span class="token function">translateX</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">50</span><span class="token operator">%</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token literal-property property">display</span><span class="token operator">:</span> flex<span class="token punctuation">;</span>
+          <span class="token literal-property property">gap</span><span class="token operator">:</span> 10px<span class="token punctuation">;</span>
+          <span class="token literal-property property">background</span><span class="token operator">:</span> <span class="token function">rgba</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0.7</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token literal-property property">padding</span><span class="token operator">:</span> 10px<span class="token punctuation">;</span>
+          border<span class="token operator">-</span>radius<span class="token operator">:</span> 20px<span class="token punctuation">;</span>
+          z<span class="token operator">-</span>index<span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        button <span class="token punctuation">{</span>
+          <span class="token literal-property property">padding</span><span class="token operator">:</span> 8px 16px<span class="token punctuation">;</span>
+          <span class="token literal-property property">border</span><span class="token operator">:</span> none<span class="token punctuation">;</span>
+          border<span class="token operator">-</span>radius<span class="token operator">:</span> 20px<span class="token punctuation">;</span>
+          <span class="token literal-property property">background</span><span class="token operator">:</span> #4caf50<span class="token punctuation">;</span>
+          <span class="token literal-property property">color</span><span class="token operator">:</span> white<span class="token punctuation">;</span>
+          font<span class="token operator">-</span>size<span class="token operator">:</span> 14px<span class="token punctuation">;</span>
+          <span class="token literal-property property">cursor</span><span class="token operator">:</span> pointer<span class="token punctuation">;</span>
+          <span class="token literal-property property">transition</span><span class="token operator">:</span> all <span class="token number">0</span><span class="token punctuation">.</span>3s<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token literal-property property">button</span><span class="token operator">:</span>hover <span class="token punctuation">{</span>
+          <span class="token literal-property property">background</span><span class="token operator">:</span> #45a049<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token literal-property property">button</span><span class="token operator">:</span>active <span class="token punctuation">{</span>
+          <span class="token literal-property property">transform</span><span class="token operator">:</span> <span class="token function">scale</span><span class="token punctuation">(</span><span class="token number">0.95</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token punctuation">.</span>debug <span class="token punctuation">{</span>
+          <span class="token literal-property property">position</span><span class="token operator">:</span> fixed<span class="token punctuation">;</span>
+          <span class="token literal-property property">top</span><span class="token operator">:</span> 60px<span class="token punctuation">;</span>
+          <span class="token literal-property property">left</span><span class="token operator">:</span> 10px<span class="token punctuation">;</span>
+          <span class="token literal-property property">color</span><span class="token operator">:</span> white<span class="token punctuation">;</span>
+          <span class="token literal-property property">background</span><span class="token operator">:</span> <span class="token function">rgba</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token literal-property property">padding</span><span class="token operator">:</span> 5px 10px<span class="token punctuation">;</span>
+          border<span class="token operator">-</span>radius<span class="token operator">:</span> 5px<span class="token punctuation">;</span>
+          font<span class="token operator">-</span>size<span class="token operator">:</span> 12px<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+
+      @media screen <span class="token function">and</span> <span class="token punctuation">(</span><span class="token parameter">max<span class="token operator">-</span>width<span class="token operator">:</span> 1000px</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        body <span class="token punctuation">{</span>
+          <span class="token literal-property property">margin</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+          <span class="token comment">/* margin-top: 50px; */</span>
+          <span class="token literal-property property">overflow</span><span class="token operator">:</span> hidden<span class="token punctuation">;</span>
+          touch<span class="token operator">-</span>action<span class="token operator">:</span> none<span class="token punctuation">;</span>
+          font<span class="token operator">-</span>family<span class="token operator">:</span> Arial<span class="token punctuation">,</span> sans<span class="token operator">-</span>serif<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        canvas <span class="token punctuation">{</span>
+          <span class="token literal-property property">display</span><span class="token operator">:</span> block<span class="token punctuation">;</span>
+          <span class="token literal-property property">width</span><span class="token operator">:</span> 100vw<span class="token punctuation">;</span>
+          <span class="token literal-property property">height</span><span class="token operator">:</span> 100vh<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token punctuation">.</span>controls <span class="token punctuation">{</span>
+          <span class="token literal-property property">position</span><span class="token operator">:</span> fixed<span class="token punctuation">;</span>
+          <span class="token literal-property property">bottom</span><span class="token operator">:</span> <span class="token number">10</span><span class="token operator">%</span><span class="token punctuation">;</span>
+          <span class="token literal-property property">left</span><span class="token operator">:</span> <span class="token number">50</span><span class="token operator">%</span><span class="token punctuation">;</span>
+          <span class="token literal-property property">transform</span><span class="token operator">:</span> <span class="token function">translateX</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">50</span><span class="token operator">%</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token literal-property property">display</span><span class="token operator">:</span> flex<span class="token punctuation">;</span>
+          <span class="token literal-property property">gap</span><span class="token operator">:</span> 10px<span class="token punctuation">;</span>
+          <span class="token literal-property property">background</span><span class="token operator">:</span> <span class="token function">rgba</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0.7</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token literal-property property">padding</span><span class="token operator">:</span> 10px<span class="token punctuation">;</span>
+          border<span class="token operator">-</span>radius<span class="token operator">:</span> 20px<span class="token punctuation">;</span>
+          z<span class="token operator">-</span>index<span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">;</span>
+          <span class="token literal-property property">display</span><span class="token operator">:</span> flex<span class="token punctuation">;</span>
+          justify<span class="token operator">-</span>content<span class="token operator">:</span> space<span class="token operator">-</span>between<span class="token punctuation">;</span>
+          <span class="token literal-property property">width</span><span class="token operator">:</span> <span class="token number">70</span><span class="token operator">%</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        button <span class="token punctuation">{</span>
+          <span class="token literal-property property">padding</span><span class="token operator">:</span> 8px 16px<span class="token punctuation">;</span>
+          <span class="token literal-property property">border</span><span class="token operator">:</span> none<span class="token punctuation">;</span>
+          border<span class="token operator">-</span>radius<span class="token operator">:</span> 20px<span class="token punctuation">;</span>
+          <span class="token literal-property property">background</span><span class="token operator">:</span> #4caf50<span class="token punctuation">;</span>
+          <span class="token literal-property property">color</span><span class="token operator">:</span> white<span class="token punctuation">;</span>
+          font<span class="token operator">-</span>size<span class="token operator">:</span> 14px<span class="token punctuation">;</span>
+          <span class="token literal-property property">cursor</span><span class="token operator">:</span> pointer<span class="token punctuation">;</span>
+          <span class="token literal-property property">transition</span><span class="token operator">:</span> all <span class="token number">0</span><span class="token punctuation">.</span>3s<span class="token punctuation">;</span>
+          font<span class="token operator">-</span>size<span class="token operator">:</span> 12px<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token literal-property property">button</span><span class="token operator">:</span>hover <span class="token punctuation">{</span>
+          <span class="token literal-property property">background</span><span class="token operator">:</span> #45a049<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token literal-property property">button</span><span class="token operator">:</span>active <span class="token punctuation">{</span>
+          <span class="token literal-property property">transform</span><span class="token operator">:</span> <span class="token function">scale</span><span class="token punctuation">(</span><span class="token number">0.95</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token punctuation">.</span>debug <span class="token punctuation">{</span>
+          <span class="token literal-property property">position</span><span class="token operator">:</span> fixed<span class="token punctuation">;</span>
+          <span class="token literal-property property">top</span><span class="token operator">:</span> 60px<span class="token punctuation">;</span>
+          <span class="token literal-property property">left</span><span class="token operator">:</span> 10px<span class="token punctuation">;</span>
+          <span class="token literal-property property">color</span><span class="token operator">:</span> white<span class="token punctuation">;</span>
+          <span class="token literal-property property">background</span><span class="token operator">:</span> <span class="token function">rgba</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token literal-property property">padding</span><span class="token operator">:</span> 5px 10px<span class="token punctuation">;</span>
+          border<span class="token operator">-</span>radius<span class="token operator">:</span> 5px<span class="token punctuation">;</span>
+          font<span class="token operator">-</span>size<span class="token operator">:</span> 12px<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+      <span class="token punctuation">.</span>clone <span class="token punctuation">{</span>
+        <span class="token literal-property property">position</span><span class="token operator">:</span> absolute<span class="token punctuation">;</span>
+        <span class="token literal-property property">top</span><span class="token operator">:</span> 60px<span class="token punctuation">;</span>
+        <span class="token literal-property property">right</span><span class="token operator">:</span> 20px<span class="token punctuation">;</span>
+        <span class="token literal-property property">width</span><span class="token operator">:</span> 20px<span class="token punctuation">;</span>
+        <span class="token literal-property property">height</span><span class="token operator">:</span> 20px<span class="token punctuation">;</span>
+        <span class="token literal-property property">display</span><span class="token operator">:</span> flex<span class="token punctuation">;</span>
+        justify<span class="token operator">-</span>content<span class="token operator">:</span> center<span class="token punctuation">;</span>
+        align<span class="token operator">-</span>items<span class="token operator">:</span> center<span class="token punctuation">;</span>
+        <span class="token literal-property property">color</span><span class="token operator">:</span> #fff<span class="token punctuation">;</span>
+        font<span class="token operator">-</span>size<span class="token operator">:</span> 24px<span class="token punctuation">;</span>
+        border<span class="token operator">-</span>radius<span class="token operator">:</span> <span class="token number">50</span><span class="token operator">%</span><span class="token punctuation">;</span>
+        <span class="token literal-property property">border</span><span class="token operator">:</span> solid 1px #fff<span class="token punctuation">;</span>
+        <span class="token literal-property property">padding</span><span class="token operator">:</span> 3px<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>style<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">/</span>head<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>body<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>div
+      <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">&quot;clone&quot;</span>
+      id<span class="token operator">=</span><span class="token string">&quot;clone&quot;</span><span class="token operator">&gt;</span>
+      ×
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>canvas id<span class="token operator">=</span><span class="token string">&quot;webglCanvas&quot;</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>canvas<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">&quot;controls&quot;</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>button id<span class="token operator">=</span><span class="token string">&quot;playBtn&quot;</span><span class="token operator">&gt;</span>播放<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>button id<span class="token operator">=</span><span class="token string">&quot;zoomIn&quot;</span><span class="token operator">&gt;</span>放大<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>button id<span class="token operator">=</span><span class="token string">&quot;zoomOut&quot;</span><span class="token operator">&gt;</span>缩小<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>button id<span class="token operator">=</span><span class="token string">&quot;rotateBtn&quot;</span><span class="token operator">&gt;</span>自转<span class="token operator">:</span> 关<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>div
+      <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">&quot;debug&quot;</span>
+      id<span class="token operator">=</span><span class="token string">&quot;debugInfo&quot;</span><span class="token operator">&gt;</span>
+      初始化中<span class="token operator">...</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 引入Three<span class="token punctuation">.</span>js库 <span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">&quot;./three.min.js&quot;</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">&quot;./GLTFLoader.js&quot;</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">&quot;./OrbitControls.js&quot;</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 调用uniapp的方法库 <span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">&quot;./uni.webview.1.5.1.js&quot;</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+
+    <span class="token operator">&lt;</span>script<span class="token operator">&gt;</span>
+      <span class="token comment">// 动态获取URL参数，自定义模型链接</span>
+      <span class="token keyword">function</span> <span class="token function">getUrlParameters</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> params <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          url <span class="token operator">=</span> window<span class="token punctuation">.</span>location<span class="token punctuation">.</span>href<span class="token punctuation">,</span>
+          query <span class="token operator">=</span> url<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">'?'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>query<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">var</span> queryArr <span class="token operator">=</span> query<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">'&amp;'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> queryArr<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">var</span> pair <span class="token operator">=</span> queryArr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">'='</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            params<span class="token punctuation">[</span>pair<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">decodeURIComponent</span><span class="token punctuation">(</span>pair<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">return</span> params<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token keyword">var</span> params <span class="token operator">=</span> <span class="token function">getUrlParameters</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>params<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">let</span> gitfUrl <span class="token operator">=</span> params<span class="token punctuation">.</span>url<span class="token punctuation">;</span>
+      <span class="token comment">// app中调用返回上一页的方法</span>
+      document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'clone'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        uni<span class="token punctuation">.</span><span class="token function">navigateBack</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// uni.postMessage({</span>
+        <span class="token comment">//   data: {</span>
+        <span class="token comment">//     action: 'click'</span>
+        <span class="token comment">//   }</span>
+        <span class="token comment">// });</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// 调试信息输出</span>
+      <span class="token keyword">function</span> <span class="token function">debugLog</span><span class="token punctuation">(</span><span class="token parameter">message</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'debugInfo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>textContent <span class="token operator">=</span> message<span class="token punctuation">;</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token comment">// 初始化场景 背景颜色</span>
+      <span class="token keyword">const</span> scene <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">THREE<span class="token punctuation">.</span>Scene</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      scene<span class="token punctuation">.</span>background <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">THREE<span class="token punctuation">.</span>Color</span><span class="token punctuation">(</span><span class="token number">0x222222</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// 初始化相机高度， 视角，纵横比， 近裁剪面，远裁剪面</span>
+      <span class="token comment">// 60度视角， 纵横比为窗口宽高比， 近裁剪面0.1，远裁剪面1000</span>
+      <span class="token keyword">const</span> camera <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">THREE<span class="token punctuation">.</span>PerspectiveCamera</span><span class="token punctuation">(</span><span class="token number">60</span><span class="token punctuation">,</span> window<span class="token punctuation">.</span>innerWidth <span class="token operator">/</span> window<span class="token punctuation">.</span>innerHeight<span class="token punctuation">,</span> <span class="token number">0.1</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// 设置相机位置，x,y,z坐标</span>
+      <span class="token comment">// x轴：左右，y轴：上下，z轴：前后，z轴正方向为前方</span>
+      camera<span class="token punctuation">.</span>position<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// 初始化渲染器</span>
+      <span class="token comment">// 1. 这三行代码的执行顺序很重要：</span>
+      <span class="token comment">//    a. 先创建渲染器实例</span>
+      <span class="token comment">//    b. 然后设置像素比</span>
+      <span class="token comment">//    c. 最后设置尺寸</span>
+      <span class="token comment">//</span>
+      <span class="token comment">// 2. 如果不设置pixelRatio，在高DPI设备上可能出现模糊</span>
+      <span class="token comment">//</span>
+      <span class="token comment">// 3. setSize()实际上做了两件事：</span>
+      <span class="token comment">//    a. 调整canvas元素的CSS样式尺寸</span>
+      <span class="token comment">//    b. 设置WebGL渲染缓冲区的实际分辨率</span>
+      <span class="token comment">//</span>
+      <span class="token comment">// 4. 内存占用：</span>
+      <span class="token comment">//    最终缓冲区大小 = (width * pixelRatio) * (height * pixelRatio) * 4(bytes/pixel)</span>
+      <span class="token comment">//    例如1920x1080屏幕DPI=2 → 实际缓冲区约16MB</span>
+      <span class="token keyword">const</span> renderer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">THREE<span class="token punctuation">.</span>WebGLRenderer</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token comment">// 指定渲染器绑定的canvas DOM元素</span>
+        <span class="token comment">// 这里使用getElementById获取id为'webglCanvas'的HTML canvas元素</span>
+        <span class="token literal-property property">canvas</span><span class="token operator">:</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'webglCanvas'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token comment">// 开启抗锯齿（Anti-aliasing）</span>
+        <span class="token comment">// 抗锯齿可以平滑渲染对象的边缘，减少锯齿状像素边缘</span>
+        <span class="token comment">// 会轻微影响性能，但能显著提升视觉质量</span>
+        <span class="token literal-property property">antialias</span><span class="token operator">:</span> <span class="token boolean">true</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// 设置设备像素比（Device Pixel Ratio）</span>
+      <span class="token comment">// 这个操作可以适配高DPI屏幕（如Retina显示屏）</span>
+      <span class="token comment">// window.devicePixelRatio获取物理像素与CSS像素的比率</span>
+      <span class="token comment">// 例如Retina屏的值为2，普通屏幕为1</span>
+      <span class="token comment">// 设置后可以避免在高DPI设备上出现模糊渲染</span>
+      renderer<span class="token punctuation">.</span><span class="token function">setPixelRatio</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>devicePixelRatio<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// 设置渲染器的输出尺寸</span>
+      <span class="token comment">// 参数为宽度和高度（单位：像素）</span>
+      <span class="token comment">// 这里设置为整个浏览器窗口的尺寸</span>
+      <span class="token comment">// window.innerWidth/innerHeight获取视口的CSS像素尺寸</span>
+      <span class="token comment">// 注意：实际渲染缓冲区大小会乘以devicePixelRatio</span>
+      <span class="token comment">// 例如：窗口宽1000px，DPI=2 → 实际渲染分辨率2000px</span>
+      renderer<span class="token punctuation">.</span><span class="token function">setSize</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>innerWidth<span class="token punctuation">,</span> window<span class="token punctuation">.</span>innerHeight<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// 添加光照</span>
+      <span class="token comment">// 创建环境光(Ambient Light)实例</span>
+      <span class="token comment">// 参数1: 光的颜色(十六进制RGB)，0xffffff表示白色光</span>
+      <span class="token comment">// 参数2: 光的强度，1.2表示120%强度（范围通常0-1，但可以超过）</span>
+      <span class="token keyword">const</span> ambientLight <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">THREE<span class="token punctuation">.</span>AmbientLight</span><span class="token punctuation">(</span><span class="token number">0xffffff</span><span class="token punctuation">,</span> <span class="token number">1.2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// 将环境光添加到场景中</span>
+      <span class="token comment">// 环境光会均匀照亮场景中的所有物体</span>
+      <span class="token comment">// 特点：没有方向、不产生阴影、全局均匀照明</span>
+      scene<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>ambientLight<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// 创建平行光(Directional Light)实例</span>
+      <span class="token comment">// 参数1: 光的颜色，0xffffff为纯白色</span>
+      <span class="token comment">// 参数2: 光的强度，0.8表示80%强度</span>
+      <span class="token keyword">const</span> directionalLight <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">THREE<span class="token punctuation">.</span>DirectionalLight</span><span class="token punctuation">(</span><span class="token number">0xffffff</span><span class="token punctuation">,</span> <span class="token number">0.8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// 设置平行光的位置</span>
+      <span class="token comment">// 参数依次为X,Y,Z坐标</span>
+      <span class="token comment">// 平行光的方向是从设置的位置指向坐标原点(0,0,0)</span>
+      <span class="token comment">// 这里设置为(2,3,4)表示光线从右上前方照射</span>
+      directionalLight<span class="token punctuation">.</span>position<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// 将平行光添加到场景中</span>
+      <span class="token comment">// 平行光特点：</span>
+      <span class="token comment">// - 有明确方向</span>
+      <span class="token comment">// - 可以产生阴影</span>
+      <span class="token comment">// - 模拟太阳光等远距离光源</span>
+      scene<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>directionalLight<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// 添加坐标轴辅助（调试用）</span>
+      <span class="token comment">// const axesHelper = new THREE.AxesHelper(5);</span>
+      <span class="token comment">// scene.add(axesHelper);</span>
+
+      <span class="token comment">// 模型和动画变量</span>
+
+      <span class="token comment">// 模型对象变量</span>
+      <span class="token comment">// 类型: THREE.Group | THREE.Object3D</span>
+      <span class="token comment">// model.traverse() - 遍历模型所有子对象</span>
+      <span class="token comment">// model.position.set() - 设置模型位置</span>
+      <span class="token keyword">let</span> model<span class="token punctuation">,</span>
+        <span class="token comment">// 动画混合器(AnimationMixer)实例</span>
+        <span class="token comment">// 类型: THREE.AnimationMixer</span>
+        <span class="token comment">// 作用: 控制模型动画的播放、暂停和混合</span>
+        <span class="token comment">// 核心功能:</span>
+        <span class="token comment">// 1. 管理动画时间轴</span>
+        <span class="token comment">// 2. 处理多个动画的混合</span>
+        <span class="token comment">// 3. 派发动画事件</span>
+        <span class="token comment">// 注意: 每个需要动画的模型需要独立的mixer</span>
+        mixer<span class="token punctuation">,</span>
+        <span class="token comment">// 动画动作(AnimationAction)实例</span>
+        <span class="token comment">// 类型: THREE.AnimationAction</span>
+        <span class="token comment">// 作用: 控制单个动画剪辑的播放状态</span>
+        <span class="token comment">// 关键属性:</span>
+        <span class="token comment">// .time - 当前动画时间(秒)</span>
+        <span class="token comment">// .timeScale - 播放速度(1=正常,-1=倒放)</span>
+        <span class="token comment">// .loop - 循环模式</span>
+        <span class="token comment">// 注意: 一个mixer可以创建多个action控制不同动画</span>
+        action<span class="token punctuation">;</span>
+      <span class="token comment">// 动画播放状态标志</span>
+      <span class="token keyword">let</span> isPlaying <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+      <span class="token comment">// 动画方向标志</span>
+      <span class="token comment">// 类型: Boolean</span>
+      <span class="token comment">// 作用: 标记当前动画播放方向</span>
+      <span class="token comment">// 取值说明:</span>
+      <span class="token comment">// false - 正向播放(0-&gt;结束)</span>
+      <span class="token comment">// true - 反向播放(结束-&gt;0)</span>
+      <span class="token keyword">let</span> isReversed <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+      <span class="token comment">// 自动旋转标志</span>
+      <span class="token comment">// 类型: Boolean</span>
+      <span class="token comment">// 作用: 控制模型是否自动旋转</span>
+      <span class="token comment">// 典型实现:</span>
+      <span class="token comment">// 在渲染循环中检测:</span>
+      <span class="token comment">// if(autoRotate) model.rotation.y += 0.01</span>
+      <span class="token keyword">let</span> autoRotate <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// 加载模型 使用GLTFLoader加载模型文件</span>
+      <span class="token keyword">const</span> loader <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">THREE<span class="token punctuation">.</span>GLTFLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">debugLog</span><span class="token punctuation">(</span><span class="token string">'开始加载模型...'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      loader<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span>
+        gitfUrl<span class="token punctuation">,</span>
+        <span class="token comment">// 参数2: 加载成功回调函数</span>
+        <span class="token punctuation">(</span><span class="token parameter">gltf</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+          <span class="token comment">// 获取模型场景对象</span>
+          model <span class="token operator">=</span> gltf<span class="token punctuation">.</span>scene<span class="token punctuation">;</span>
+          <span class="token comment">// 设置模型初始缩放（1,1,1表示原始大小）</span>
+          <span class="token comment">// 注意：某些模型可能需要调整这个值避免过大/过小</span>
+          model<span class="token punctuation">.</span>scale<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token comment">// 设置模型Y轴位置（将模型抬高0.5单位）</span>
+          <span class="token comment">// 这个调整通常用于让模型&quot;站在&quot;地面上</span>
+          model<span class="token punctuation">.</span>position<span class="token punctuation">.</span>y <span class="token operator">=</span> <span class="token number">0.5</span><span class="token punctuation">;</span>
+
+          <span class="token comment">// 初始化动画    // 检查模型是否包含动画数据</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>gltf<span class="token punctuation">.</span>animations <span class="token operator">&amp;&amp;</span> gltf<span class="token punctuation">.</span>animations<span class="token punctuation">.</span>length <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 如果有动画，创建动画混合器（Animation Mixer）</span>
+            <span class="token comment">// Animation Mixer用于处理模型的动画</span>
+            <span class="token comment">// 参数：需要绑定动画的模型对象</span>
+            mixer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">THREE<span class="token punctuation">.</span>AnimationMixer</span><span class="token punctuation">(</span>model<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// 获取第一个动画剪辑(AnimationClip)并创建动画动作</span>
+
+            action <span class="token operator">=</span> mixer<span class="token punctuation">.</span><span class="token function">clipAction</span><span class="token punctuation">(</span>gltf<span class="token punctuation">.</span>animations<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// 设置动画循环模式为单次循环（LoopOnce）</span>
+            <span class="token comment">// 设置动画循环模式：</span>
+            <span class="token comment">// THREE.LoopOnce - 只播放一次</span>
+            <span class="token comment">// 第二个参数1表示重复次数（这里设为1次）</span>
+            action<span class="token punctuation">.</span><span class="token function">setLoop</span><span class="token punctuation">(</span><span class="token constant">THREE</span><span class="token punctuation">.</span>LoopOnce<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// 动画播放完后保持在最后一帧</span>
+            <span class="token comment">// 如果设为false，动画会跳回第一帧</span>
+            action<span class="token punctuation">.</span>clampWhenFinished <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+            <span class="token comment">// 初始状态设为暂停</span>
+            <span class="token comment">// 这样可以在点击播放按钮时开始动画</span>
+            action<span class="token punctuation">.</span>paused <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+            <span class="token comment">// 监听动画完成事件</span>
+            mixer<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'finished'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+              <span class="token comment">// 更新播放状态</span>
+              isPlaying <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+              <span class="token comment">// 切换播放方向标记</span>
+              isReversed <span class="token operator">=</span> <span class="token operator">!</span>isReversed<span class="token punctuation">;</span>
+              <span class="token comment">// 更新按钮显示</span>
+              <span class="token function">updatePlayButton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token function">debugLog</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">模型加载完成，找到动画: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>gltf<span class="token punctuation">.</span>animations<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token comment">// debugLog('模型加载完成，未找到动画');</span>
+          <span class="token punctuation">}</span>
+          <span class="token comment">// 将模型添加到场景中</span>
+          scene<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>model<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token comment">// 更新播放按钮状态</span>
+          <span class="token function">updatePlayButton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token comment">// 参数3: 加载进度回调</span>
+        <span class="token punctuation">(</span><span class="token parameter">xhr</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+          <span class="token comment">// 计算加载进度百分比（保留1位小数）</span>
+          <span class="token keyword">const</span> percent <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>xhr<span class="token punctuation">.</span>loaded <span class="token operator">/</span> xhr<span class="token punctuation">.</span>total<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toFixed</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token function">debugLog</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">模型加载中: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>percent<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">%</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">(</span><span class="token parameter">error</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+          <span class="token function">debugLog</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">模型加载失败: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>error<span class="token punctuation">.</span>message<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// 交互控制</span>
+      <span class="token comment">// 标记当前是否正在拖拽</span>
+      <span class="token keyword">let</span> isDragging <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+      <span class="token comment">// 存储上一次的指针位置</span>
+      <span class="token keyword">let</span> previousPosition <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token literal-property property">x</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token literal-property property">y</span><span class="token operator">:</span> <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// 鼠标/触摸事件 指针按下事件处理（兼容鼠标/触摸）</span>
+      <span class="token keyword">function</span> <span class="token function">onPointerDown</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 设置拖拽状态为true</span>
+        isDragging <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token comment">// 保存当前指针位置：</span>
+        <span class="token comment">// event.clientX/clientY - 鼠标事件坐标</span>
+        <span class="token comment">// event.touches[0].clientX/clientY - 触摸事件坐标</span>
+        previousPosition <span class="token operator">=</span> <span class="token punctuation">{</span>
+          <span class="token literal-property property">x</span><span class="token operator">:</span> event<span class="token punctuation">.</span>clientX <span class="token operator">||</span> event<span class="token punctuation">.</span>touches<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>clientX<span class="token punctuation">,</span>
+          <span class="token literal-property property">y</span><span class="token operator">:</span> event<span class="token punctuation">.</span>clientY <span class="token operator">||</span> event<span class="token punctuation">.</span>touches<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>clientY
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token comment">// 1. 阻止默认行为防止页面滚动</span>
+        <span class="token comment">// 2. 改变鼠标指针样式</span>
+      <span class="token punctuation">}</span>
+      <span class="token comment">// 指针移动事件处理</span>
+      <span class="token keyword">function</span> <span class="token function">onPointerMove</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 检查是否处于拖拽状态且模型已加载</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isDragging <span class="token operator">||</span> <span class="token operator">!</span>model<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 获取当前指针位置（兼容处理）</span>
+        <span class="token keyword">const</span> clientX <span class="token operator">=</span> event<span class="token punctuation">.</span>clientX <span class="token operator">||</span> event<span class="token punctuation">.</span>touches<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>clientX<span class="token punctuation">;</span>
+        <span class="token keyword">const</span> clientY <span class="token operator">=</span> event<span class="token punctuation">.</span>clientY <span class="token operator">||</span> event<span class="token punctuation">.</span>touches<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>clientY<span class="token punctuation">;</span>
+        <span class="token comment">// 计算指针移动增量（当前帧与上一帧的差值）</span>
+        <span class="token keyword">const</span> deltaX <span class="token operator">=</span> clientX <span class="token operator">-</span> previousPosition<span class="token punctuation">.</span>x<span class="token punctuation">;</span>
+        <span class="token keyword">const</span> deltaY <span class="token operator">=</span> clientY <span class="token operator">-</span> previousPosition<span class="token punctuation">.</span>y<span class="token punctuation">;</span>
+        <span class="token comment">// 根据水平移动旋转模型（Y轴旋转）</span>
+        <span class="token comment">// 0.01是旋转灵敏度系数，值越大旋转越快</span>
+
+        model<span class="token punctuation">.</span>rotation<span class="token punctuation">.</span>y <span class="token operator">+=</span> deltaX <span class="token operator">*</span> <span class="token number">0.01</span><span class="token punctuation">;</span>
+        <span class="token comment">// 根据垂直移动旋转模型（X轴旋转）</span>
+        <span class="token comment">// 使用THREE.MathUtils.clamp限制旋转范围// 限制不要垂直翻转</span>
+        <span class="token comment">// 参数：值, 最小值(-90度), 最大值(90度)</span>
+
+        model<span class="token punctuation">.</span>rotation<span class="token punctuation">.</span>x <span class="token operator">=</span> <span class="token constant">THREE</span><span class="token punctuation">.</span>MathUtils<span class="token punctuation">.</span><span class="token function">clamp</span><span class="token punctuation">(</span>model<span class="token punctuation">.</span>rotation<span class="token punctuation">.</span>x <span class="token operator">+</span> deltaY <span class="token operator">*</span> <span class="token number">0.01</span><span class="token punctuation">,</span> <span class="token operator">-</span>Math<span class="token punctuation">.</span><span class="token constant">PI</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">,</span> Math<span class="token punctuation">.</span><span class="token constant">PI</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 更新记录的位置</span>
+        previousPosition <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token literal-property property">x</span><span class="token operator">:</span> clientX<span class="token punctuation">,</span> <span class="token literal-property property">y</span><span class="token operator">:</span> clientY <span class="token punctuation">}</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token comment">// 指针释放事件处理</span>
+      <span class="token keyword">function</span> <span class="token function">onPointerUp</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 重置拖拽状态</span>
+        isDragging <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token comment">// 事件监听（兼容鼠标和触摸） // 获取渲染器的canvas元素</span>
+      <span class="token keyword">const</span> canvas <span class="token operator">=</span> renderer<span class="token punctuation">.</span>domElement<span class="token punctuation">;</span>
+      <span class="token comment">// 鼠标按下</span>
+      canvas<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'mousedown'</span><span class="token punctuation">,</span> onPointerDown<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// 鼠标移动</span>
+      canvas<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'mousemove'</span><span class="token punctuation">,</span> onPointerMove<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// 鼠标释放</span>
+      canvas<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'mouseup'</span><span class="token punctuation">,</span> onPointerUp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// 鼠标离开画布</span>
+      canvas<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'mouseleave'</span><span class="token punctuation">,</span> onPointerUp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// 触摸事件监听（移动端适配）</span>
+      <span class="token comment">// { passive: false } 允许阻止默认滚动行为</span>
+      canvas<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'touchstart'</span><span class="token punctuation">,</span> onPointerDown<span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token literal-property property">passive</span><span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      canvas<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'touchmove'</span><span class="token punctuation">,</span> onPointerMove<span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token literal-property property">passive</span><span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      canvas<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'touchend'</span><span class="token punctuation">,</span> onPointerUp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// 控制按钮功能 // 更新播放按钮状态函数</span>
+      <span class="token keyword">function</span> <span class="token function">updatePlayButton</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 获取播放按钮DOM元素</span>
+        <span class="token keyword">const</span> btn <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'playBtn'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>action<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          btn<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'无动画'</span><span class="token punctuation">;</span>
+          btn<span class="token punctuation">.</span>disabled <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span> <span class="token comment">// 禁用按钮交互</span>
+          <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// 根据播放状态更新按钮文本</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>isPlaying<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          btn<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'暂停'</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+          btn<span class="token punctuation">.</span>textContent <span class="token operator">=</span> isReversed <span class="token operator">?</span> <span class="token string">'倒放'</span> <span class="token operator">:</span> <span class="token string">'播放'</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// 启用按钮</span>
+        btn<span class="token punctuation">.</span>disabled <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token comment">// 播放按钮点击事件</span>
+      document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'playBtn'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>action<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>isPlaying<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token comment">// 暂停逻辑</span>
+          action<span class="token punctuation">.</span>paused <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span> <span class="token comment">// 暂停动画播放</span>
+          isPlaying <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span> <span class="token comment">// 更新状态标志</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+          <span class="token comment">// 设置播放方向和起始点</span>
+          action<span class="token punctuation">.</span>timeScale <span class="token operator">=</span> isReversed <span class="token operator">?</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">;</span>
+          action<span class="token punctuation">.</span>time <span class="token operator">=</span> isReversed <span class="token operator">?</span> action<span class="token punctuation">.</span><span class="token function">getClip</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>duration <span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// 设置起始点</span>
+          <span class="token comment">// 重置并播放动画（reset()清除之前的混合效果）</span>
+          action<span class="token punctuation">.</span><span class="token function">reset</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token comment">// 更新状态标志</span>
+          isPlaying <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// 立即更新按钮状态</span>
+        <span class="token function">updatePlayButton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// 放大按钮事件</span>
+      document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'zoomIn'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 安全校验 + 放大1.1倍</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>model<span class="token punctuation">)</span> model<span class="token punctuation">.</span>scale<span class="token punctuation">.</span><span class="token function">multiplyScalar</span><span class="token punctuation">(</span><span class="token number">1.1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// 缩小按钮事件</span>
+      document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'zoomOut'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 安全校验 + 缩小到0.9倍</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>model<span class="token punctuation">)</span> model<span class="token punctuation">.</span>scale<span class="token punctuation">.</span><span class="token function">multiplyScalar</span><span class="token punctuation">(</span><span class="token number">0.9</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// 自转按钮事件</span>
+      document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'rotateBtn'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        autoRotate <span class="token operator">=</span> <span class="token operator">!</span>autoRotate<span class="token punctuation">;</span> <span class="token comment">// 切换自转状态</span>
+        document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'rotateBtn'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">自转: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>autoRotate <span class="token operator">?</span> <span class="token string">'开'</span> <span class="token operator">:</span> <span class="token string">'关'</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// 窗口大小调整 // 窗口大小响应式处理</span>
+      window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'resize'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 更新相机宽高比</span>
+        camera<span class="token punctuation">.</span>aspect <span class="token operator">=</span> window<span class="token punctuation">.</span>innerWidth <span class="token operator">/</span> window<span class="token punctuation">.</span>innerHeight<span class="token punctuation">;</span>
+        <span class="token comment">// 必须调用此方法更新相机投影矩阵</span>
+        camera<span class="token punctuation">.</span><span class="token function">updateProjectionMatrix</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 调整渲染器尺寸（同步canvas的CSS和绘图缓冲区尺寸）</span>
+        renderer<span class="token punctuation">.</span><span class="token function">setSize</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>innerWidth<span class="token punctuation">,</span> window<span class="token punctuation">.</span>innerHeight<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// 动画循环 // 创建Three.js时钟对象（用于精确时间计算）</span>
+      <span class="token keyword">const</span> clock <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">THREE<span class="token punctuation">.</span>Clock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">function</span> <span class="token function">animate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 请求下一帧动画（形成递归循环）</span>
+        <span class="token function">requestAnimationFrame</span><span class="token punctuation">(</span>animate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 更新动画</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>mixer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token comment">// 计算时间增量（秒）   // 更新动画系统（需传入时间差）</span>
+          mixer<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span>clock<span class="token punctuation">.</span><span class="token function">getDelta</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">// 自转逻辑</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>autoRotate <span class="token operator">&amp;&amp;</span> model<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          model<span class="token punctuation">.</span>rotation<span class="token punctuation">.</span>y <span class="token operator">+=</span> <span class="token number">0.005</span><span class="token punctuation">;</span> <span class="token comment">// 每帧旋转0.005弧度</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// 执行渲染</span>
+        renderer<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>scene<span class="token punctuation">,</span> camera<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token comment">// 启动动画循环</span>
+      <span class="token function">animate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">debugLog</span><span class="token punctuation">(</span><span class="token string">'渲染循环已启动'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">/</span>body<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>html<span class="token operator">&gt;</span>
+
+</code></pre></div></div> <footer class="page-edit" style="display:none;"><!----> <!----></footer> <!----> <!----> <!----></main> <!----></div></div></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div><div class="reco-bgm-panel" data-v-b1d3339e><audio id="bgm" src="https://cnd.yinglingxuan.cn/a_mp3/LIKPIA%20-%20%E5%A4%8F%C2%B7%E7%83%9F%E7%81%AB.mp3" data-v-b1d3339e></audio> <div class="reco-float-box" style="top:10px;z-index:999999;display:none;" data-v-b1d3339e data-v-41bcba48 data-v-b1d3339e><img src="https://cnd.yinglingxuan.cn/myPng/1.jpg" data-v-b1d3339e></div> <div class="reco-bgm-box" style="left:10px;bottom:10px;z-index:999999;" data-v-b1d3339e data-v-41bcba48 data-v-b1d3339e><div class="reco-bgm-cover" style="background-image:url(https://cnd.yinglingxuan.cn/myPng/1.jpg);" data-v-b1d3339e><div class="mini-operation" style="display:none;" data-v-b1d3339e><i class="reco-bgm reco-bgm-pause" style="display:none;" data-v-b1d3339e></i> <i class="reco-bgm reco-bgm-play" style="display:none;" data-v-b1d3339e></i></div> <div class="falut-message" style="display:none;" data-v-b1d3339e>
+          播放失败
+        </div></div> <div class="reco-bgm-info" data-v-b1d3339e data-v-41bcba48 data-v-b1d3339e><div class="info-box" data-v-b1d3339e><i class="reco-bgm reco-bgm-music music" data-v-b1d3339e></i>LIKPLA</div> <div class="info-box" data-v-b1d3339e><i class="reco-bgm reco-bgm-artist" data-v-b1d3339e></i>夏.烟火</div> <div class="reco-bgm-progress" data-v-b1d3339e><div class="progress-bar" data-v-b1d3339e><div class="bar" data-v-b1d3339e></div></div></div> <div class="reco-bgm-operation" data-v-b1d3339e><i class="reco-bgm reco-bgm-last last" data-v-b1d3339e></i> <i class="reco-bgm reco-bgm-pause pause" style="display:none;" data-v-b1d3339e></i> <i class="reco-bgm reco-bgm-play play" data-v-b1d3339e></i> <i class="reco-bgm reco-bgm-next next" data-v-b1d3339e></i> <i class="reco-bgm reco-bgm-volume1 volume" data-v-b1d3339e></i> <i class="reco-bgm reco-bgm-mute mute" style="display:none;" data-v-b1d3339e></i> <div class="volume-bar" data-v-b1d3339e><div class="bar" data-v-b1d3339e></div></div></div></div> <div class="reco-bgm-left-box" data-v-b1d3339e data-v-41bcba48 data-v-b1d3339e><i class="reco-bgm reco-bgm-left" data-v-b1d3339e></i></div></div></div><div class="Sakura" data-v-248d85d6><canvas id="canvas_sakura" style="z-index:99999999999;" data-v-248d85d6></canvas></div><canvas id="Ribbon"></canvas><div class="RibbonAnimation"></div><div></div><div id="live2d-widget" class="live2d-widget-container" style="position:fixed;right:65px;bottom:0px;width:195px;height:345px;z-index:99999;opacity:1;pointer-events:none;"><canvas id="live2d_canvas" width="195" height="345" class="live2d_canvas" style="position:absolute;left:0px;top:0px;width:195px;height:345px;"></canvas></div><div id="goTop" class="hide-cat" data-v-bf92849a></div></div></div>
+    <script src="/assets/js/app.c27a4aec.js" defer></script><script src="/assets/js/3.8e6f7e3e.js" defer></script><script src="/assets/js/2.ef225559.js" defer></script><script src="/assets/js/1.967b5cf0.js" defer></script><script src="/assets/js/56.9f15d331.js" defer></script>
+  </body>
+</html>
